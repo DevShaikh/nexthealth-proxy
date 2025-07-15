@@ -1,4 +1,3 @@
-// validations/schemas/locationSchema.ts
 import { z } from "zod";
 
 export const GetLocationsSchema = z.object({
