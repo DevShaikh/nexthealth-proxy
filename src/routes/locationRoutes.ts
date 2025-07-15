@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import validateRequest from "../utils/zod_validation";
+import validateRequest from "../middleware/zodValidation";
 import { GetLocationsSchema } from "../validations/schemas/locationSchema";
 
 import * as locationController from "../controllers/locationController";
