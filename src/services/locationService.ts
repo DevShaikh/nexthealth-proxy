@@ -6,7 +6,7 @@ import { Location, NextHealthAPIResponse } from "../types";
 
 import env from "../config/env";
 
-export const getLocations = async (subdomain: string) => {
+export const getLocations = async (subdomain?: string) => {
   try {
     const { data }: AxiosResponse<NextHealthAPIResponse<Location[]>> =
       await axios.get(
