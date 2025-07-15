@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import locationRoutes from "./locationRoutes";
+import providerRoutes from "./providerRoutes";
 
 const router = Router();
 
@@ -10,5 +11,7 @@ router.get("/", (_, res) => {
 });
 
 router.use("/locations", locationRoutes);
+
+router.use("/providers", providerRoutes);
 
 export default router;
