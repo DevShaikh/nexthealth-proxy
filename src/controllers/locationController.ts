@@ -1,6 +1,5 @@
 import { RequestHandler } from "express";
 
-import ApiError from "../utils/ApiError";
 import { sendSuccessResponse } from "../utils/responseHandler";
 
 import { GetLocationsInput } from "validations/schemas/locationSchema";
