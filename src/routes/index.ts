@@ -4,6 +4,7 @@ import authRoutes from "./authRoutes";
 import locationRoutes from "./locationRoutes";
 import providerRoutes from "./providerRoutes";
 import appointmentRoutes from "./appointmentRoutes";
+import patientRoutes from "./patientRoutes";
 
 const router = Router();
 
@@ -19,5 +20,7 @@ router.use("/locations", locationRoutes);
 router.use("/providers", providerRoutes);
 
 router.use("/appointment", appointmentRoutes);
+
+router.use("/patients", patientRoutes);
 
 export default router;
