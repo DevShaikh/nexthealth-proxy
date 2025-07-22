@@ -12,7 +12,9 @@ export type GetAppointmentTypesInput = z.infer<
 
 export const GetAppointmentSlotsSchema = z.object({
   subdomain: z.string(),
-  start_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  start_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, {
+    message: "Must be a valid YYYY-MM-DD date string",
+  }),
   days: z.coerce.number().int(),
 
   "lids[]": z
