@@ -7,15 +7,10 @@ import { GetProvidersInput } from "../validations/schemas/providerSchema";
 
 import { NextHealthAPIResponse, Provider } from "../types";
 
-export const getProviders = async ({
-  subdomain,
-  location_id,
-}: GetProvidersInput) => {
+export const getProviders = async (params: string) => {
   try {
     const { data }: AxiosResponse<NextHealthAPIResponse<Provider[]>> =
-      await externalApi.get(
-        `/providers?subdomain=${subdomain}&location_id=${location_id}`
-      );
+      await externalApi.get(`/providers${params}`);
 
     const { data: providers } = data;
 

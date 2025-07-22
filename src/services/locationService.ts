@@ -5,10 +5,10 @@ import ApiError from "../utils/ApiError";
 
 import { Location, NextHealthAPIResponse } from "../types";
 
-export const getLocations = async (subdomain?: string) => {
+export const getLocations = async (params?: string) => {
   try {
     const { data }: AxiosResponse<NextHealthAPIResponse<Location[]>> =
-      await externalApi.get(`/locations?subdomain=${subdomain}`);
+      await externalApi.get(`/locations${params}`);
 
     const { data: locations } = data;
 

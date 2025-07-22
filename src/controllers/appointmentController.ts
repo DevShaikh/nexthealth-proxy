@@ -3,17 +3,19 @@ import { RequestHandler } from "express";
 import { sendSuccessResponse } from "../utils/responseHandler";
 
 import {
-  GetAppointmentSlotsSchema,
-  GetAppointmentTypesSchema,
+  GetAppointmentSlotsInput,
+  GetAppointmentTypesInput,
 } from "../validations/schemas/appointmentSchema";
 
 import * as appointmentService from "../services/appointmentService";
+import { toQueryParams } from "../utils";
 
 export const getAppointmentTypes: RequestHandler = async (req, res, next) => {
   try {
-    const query = GetAppointmentTypesSchema.parse(req.query);
+    const query = req.query as GetAppointmentTypesInput;
+    const params = toQueryParams(query);
 
-    const result = await appointmentService.getAppointmentTypes(query);
+    const result = await appointmentService.getAppointmentTypes(params);
 
     sendSuccessResponse(
       res,
@@ -28,9 +30,10 @@ export const getAppointmentTypes: RequestHandler = async (req, res, next) => {
 
 export const getAppointmentSlots: RequestHandler = async (req, res, next) => {
   try {
-    const query = GetAppointmentSlotsSchema.parse(req.query);
+    const query = req.query as unknown as GetAppointmentSlotsInput;
+    const params = toQueryParams(query);
 
-    const result = await appointmentService.getAppointmentSlots(query);
+    const result = await appointmentService.getAppointmentSlots(params);
 
     sendSuccessResponse(
       res,
