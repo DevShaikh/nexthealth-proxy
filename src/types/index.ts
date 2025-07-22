@@ -14,6 +14,13 @@ export interface NextHealthAPIResponse<Data> {
  * Interface for the 'Location' object, as provided by you.
  * This is used for the 'locations' array within the Provider data.
  */
+export interface Authenticate {
+  token: string;
+}
+/**
+ * Interface for the 'Location' object, as provided by you.
+ * This is used for the 'locations' array within the Provider data.
+ */
 export interface Location {
   id: number;
   name: string;
@@ -133,4 +140,13 @@ export interface Provider {
   locations: Location[]; // <--- This now correctly uses your 'Location' interface
   provider_requestables: ProviderRequestable[];
   availabilities: ProviderAvailability[];
+}
+
+export interface AppointmentType {
+  id: number;
+  name: string;
+  parent_type: string;
+  parent_id: number;
+  minutes: number;
+  bookable_online: boolean;
 }
