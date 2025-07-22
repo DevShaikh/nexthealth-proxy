@@ -11,15 +11,54 @@ export interface NextHealthAPIResponse<Data> {
 }
 
 /**
- * Interface for the 'Location' object, as provided by you.
- * This is used for the 'locations' array within the Provider data.
+ * Interface for the 'Patient' object, as provided by you.
+ * This is used for the 'Patient' array within data.
+ */
+export interface Patient {
+  id: number;
+  email: string;
+  first_name: string;
+  middle_name: string | null;
+  last_name: string;
+  name: string;
+  created_at: string; // ISO date string
+  updated_at: string; // ISO date string
+  institution_id: number;
+  foreign_id: string;
+  foreign_id_type: string;
+  bio: {
+    gender: string;
+    phone_number: string;
+    date_of_birth: string; // ISO date string (e.g., "1957-07-03")
+    verified_mobile: string;
+  };
+  inactive: boolean;
+  last_sync_time: string | null;
+  guarantor_id: number | null;
+  unsubscribe_sms: boolean;
+  balance: {
+    amount: string;
+    currency: string;
+  };
+  billing_type: string | null;
+  chart_id: string | null;
+  preferred_language: string | null;
+  preferred_locale: string | null;
+  location_ids: number[];
+  provider_id: number | null;
+}
+
+/**
+ * Interface for the 'Authenticate' object, as provided by you.
+ * This is used for the 'Authentication Token' within data.
  */
 export interface Authenticate {
   token: string;
 }
+
 /**
  * Interface for the 'Location' object, as provided by you.
- * This is used for the 'locations' array within the Provider data.
+ * This is used for the 'locations' array within data.
  */
 export interface Location {
   id: number;
