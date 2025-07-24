@@ -8,7 +8,7 @@ import env from "../config/env";
 
 const logger = (req: Request, res: Response, next: NextFunction) => {
   if (env.NODE_ENV === "development") {
-    console.log(
+    console.warn(
       `[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`
     );
   }

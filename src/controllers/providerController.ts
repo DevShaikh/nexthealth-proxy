@@ -15,7 +15,7 @@ export const getProviders: RequestHandler = async (req, res, next) => {
 
     const result = await providerService.getProviders(params);
 
-    sendSuccessResponse(res, 200, result, "Providers fetched successful");
+    sendSuccessResponse(res, 200, result, "Providers fetched successfully");
   } catch (err) {
     next(err);
   }

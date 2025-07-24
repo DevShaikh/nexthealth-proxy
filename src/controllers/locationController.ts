@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 
 import { sendSuccessResponse } from "../utils/responseHandler";
 
-import { GetLocationsInput } from "validations/schemas/locationSchema";
+import { GetLocationsInput } from "../validations/schemas/locationSchema";
 
 import { toQueryParams } from "../utils";
 
@@ -15,7 +15,7 @@ export const getLocations: RequestHandler = async (req, res, next) => {
 
     const result = await locationService.getLocations(params);
 
-    sendSuccessResponse(res, 200, result, "Locations fetched successful");
+    sendSuccessResponse(res, 200, result, "Locations fetched successfully");
   } catch (err) {
     next(err);
   }

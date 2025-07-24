@@ -3,17 +3,21 @@
  * @description Custom error class for API-specific errors.
  */
 
+// src/utils/ApiError.ts
+
+type ErrorDetail = string | Record<string, unknown>;
+
 class ApiError extends Error {
   public statusCode: number;
   public isOperational: boolean;
-  public errors: any;
+  public errors?: ErrorDetail | ErrorDetail[];
 
   constructor(
     statusCode: number,
     message: string,
     isOperational = true,
     stack = "",
-    errors?: any
+    errors?: ErrorDetail | ErrorDetail[]
   ) {
     super(message);
     this.statusCode = statusCode;

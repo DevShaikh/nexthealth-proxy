@@ -17,14 +17,13 @@ process.on("uncaughtException", (err: Error) => {
 
 // Start the Express server
 const server = app.listen(env.PORT, () => {
-  console.log(`Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
-  console.log(`Access API at http://localhost:${env.PORT}/api`);
+  console.warn(`Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
 });
 
 // Handle unhandled promise rejections (asynchronous errors not caught by .catch())
 process.on(
   "unhandledRejection",
-  (reason: Error | any, promise: Promise<any>) => {
+  (reason: Error | { name: unknown; message: unknown; stack: unknown }) => {
     console.error("UNHANDLED REJECTION! 💥 Shutting down...");
     console.error(reason.name, reason.message, reason.stack || reason);
     // Close server and exit process
@@ -36,8 +35,8 @@ process.on(
 
 // Optional: Handle SIGTERM (e.g., from Heroku or Docker stop)
 process.on("SIGTERM", () => {
-  console.log("👋 SIGTERM RECEIVED. Shutting down gracefully...");
+  console.warn("👋 SIGTERM RECEIVED. Shutting down gracefully...");
   server.close(() => {
-    console.log("Process terminated!");
+    console.warn("Process terminated!");
   });
 });

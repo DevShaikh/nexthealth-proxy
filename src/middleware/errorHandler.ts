@@ -3,26 +3,38 @@
  * @description Global error handling middleware for Express.
  */
 
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
 import env from "../config/env";
 
 import ApiError from "../utils/ApiError";
 
 // Error handling middleware
-const errorHandler = (
-  err: any,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  let error = err;
+const errorHandler = (err: unknown, req: Request, res: Response) => {
+  let error: ApiError;
 
-  // If the error is not an operational error, convert it to one
-  if (!(error instanceof ApiError)) {
-    const statusCode = error.statusCode || 500;
-    const message = error.error[0] || error.message || "Something went wrong";
-    error = new ApiError(statusCode, message, false, error.stack);
+  // Narrow unknown error into ApiError
+  if (err instanceof ApiError) {
+    error = err;
+  } else {
+    const maybeErr = err as Partial<{
+      statusCode: number;
+      message: string;
+      error: string[];
+      stack: string;
+    }>;
+
+    const statusCode = maybeErr.statusCode || 500;
+    const message =
+      maybeErr?.error?.[0] || maybeErr?.message || "Something went wrong";
+
+    error = new ApiError(
+      statusCode,
+      message,
+      false,
+      maybeErr.stack,
+      maybeErr?.error
+    );
   }
 
   const { statusCode, message, isOperational } = error;

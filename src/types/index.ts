@@ -1,3 +1,17 @@
+export interface ExternalAPIErrorResponse {
+  code: boolean;
+  description: string | null;
+  data: unknown;
+  error: string[];
+}
+
+export interface ExternalAPIError {
+  response: {
+    data: ExternalAPIErrorResponse;
+    status: number;
+  };
+}
+
 /**
  * Interface for the standard NextHealth API Response wrapper.
  * This is a generic interface that can wrap any data type.

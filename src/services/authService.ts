@@ -1,9 +1,8 @@
 import { AxiosResponse } from "axios";
 import externalApi from "../utils/externalApi";
 
-import ApiError from "../utils/ApiError";
-
 import { Authenticate, NextHealthAPIResponse } from "../types";
+import { handleExternalAPIError } from "../utils/handleExternalAPIError";
 
 export const authenticate = async () => {
   try {
@@ -13,22 +12,7 @@ export const authenticate = async () => {
     const { data: auth } = data;
 
     return auth;
-  } catch (error: any) {
-    // This will directly pass the original error object to your middleware
-    if (error.response && error.response.data) {
-      throw {
-        ...error.response.data,
-        statusCode: error.response.status,
-      };
-    }
-
-    throw error instanceof ApiError
-      ? error
-      : new ApiError(
-          500,
-          `Failed to authenticate: ${
-            error instanceof Error ? error.message : "Unknown error"
-          }`
-        );
+  } catch (error: unknown) {
+    handleExternalAPIError(error, "Failed to authenticate");
   }
 };

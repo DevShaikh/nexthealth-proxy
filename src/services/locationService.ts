@@ -1,9 +1,8 @@
 import { AxiosResponse } from "axios";
 import externalApi from "../utils/externalApi";
 
-import ApiError from "../utils/ApiError";
-
 import { Location, NextHealthAPIResponse } from "../types";
+import { handleExternalAPIError } from "../utils/handleExternalAPIError";
 
 export const getLocations = async (params?: string) => {
   try {
@@ -13,21 +12,7 @@ export const getLocations = async (params?: string) => {
     const { data: locations } = data;
 
     return locations || [];
-  } catch (error: any) {
-    // This will directly pass the original error object to your middleware
-    if (error.response && error.response.data) {
-      throw {
-        ...error.response.data,
-        statusCode: error.response.status,
-      };
-    }
-    throw error instanceof ApiError
-      ? error
-      : new ApiError(
-          500,
-          `Failed to fetch locations: ${
-            error instanceof Error ? error.message : "Unknown error"
-          }`
-        );
+  } catch (error: unknown) {
+    handleExternalAPIError(error, "Failed to fetch locations");
   }
 };

@@ -1,5 +1,5 @@
 // src/middleware/validateRequest.ts
-import e, { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import { AnyZodObject, ZodError } from "zod";
 import ApiError from "../utils/ApiError"; // Your custom API error class
 
@@ -45,7 +45,7 @@ export const validateRequest =
       }
 
       next();
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (err instanceof ZodError) {
         const errorMessages = err.errors.map((issue) => ({
           path: issue.path.join("."),
@@ -53,7 +53,7 @@ export const validateRequest =
         }));
         return next(
           new ApiError(400, "Validation Error", true, "", errorMessages)
-        ); // 400 Bad Request
+        ); // 400 Bad Requests
       }
       next(err);
     }

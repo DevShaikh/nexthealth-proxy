@@ -8,7 +8,7 @@ const externalApi = axios.create({
 
 externalApi.interceptors.request.use(
   (config) => {
-    if (!!env.NEXT_HEALTH_API_TOKEN) {
+    if (env.NEXT_HEALTH_API_TOKEN) {
       config.headers.Authorization = `${env.NEXT_HEALTH_API_TOKEN}`;
       config.headers.Accept = "application/vnd.Nexhealth+json;version=2";
     } else {
@@ -16,8 +16,6 @@ externalApi.interceptors.request.use(
         "[Axios Interceptor] NEXT_HEALTH_API_TOKEN is not set or is using default value."
       );
     }
-
-    console.error("[Axios Interceptor] Request:", config.url);
 
     return config;
   },

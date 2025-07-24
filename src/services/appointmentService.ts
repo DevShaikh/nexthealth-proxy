@@ -1,11 +1,10 @@
 import { AxiosResponse } from "axios";
 import externalApi from "../utils/externalApi";
 
-import ApiError from "../utils/ApiError";
-
 import { Appointment, AppointmentType, NextHealthAPIResponse } from "../types";
 
 import { CreateAppointmentInput } from "../validations/schemas/appointmentSchema";
+import { handleExternalAPIError } from "../utils/handleExternalAPIError";
 
 export const getAppointmentTypes = async (params: string) => {
   try {
@@ -15,23 +14,8 @@ export const getAppointmentTypes = async (params: string) => {
     const { data: appointmentTypes } = data;
 
     return appointmentTypes || [];
-  } catch (error: any) {
-    // This will directly pass the original error object to your middleware
-    if (error.response && error.response.data) {
-      throw {
-        ...error.response.data,
-        statusCode: error.response.status,
-      };
-    }
-
-    throw error instanceof ApiError
-      ? error
-      : new ApiError(
-          500,
-          `Failed to fetch appointment types: ${
-            error instanceof Error ? error.message : "Unknown error"
-          }`
-        );
+  } catch (error: unknown) {
+    handleExternalAPIError(error, "Failed to fetch appointment types");
   }
 };
 
@@ -43,23 +27,8 @@ export const getAppointmentSlots = async (params: string) => {
     const { data: appointmentSlots } = data;
 
     return appointmentSlots || [];
-  } catch (error: any) {
-    // This will directly pass the original error object to your middleware
-    if (error.response && error.response.data) {
-      throw {
-        ...error.response.data,
-        statusCode: error.response.status,
-      };
-    }
-
-    throw error instanceof ApiError
-      ? error
-      : new ApiError(
-          500,
-          `Failed to fetch appointment slots: ${
-            error instanceof Error ? error.message : "Unknown error"
-          }`
-        );
+  } catch (error: unknown) {
+    handleExternalAPIError(error, "Failed to fetch appointment slots");
   }
 };
 
@@ -78,22 +47,7 @@ export const createAppointment = async (
     const { data: appointment } = data;
 
     return appointment || {};
-  } catch (error: any) {
-    // This will directly pass the original error object to your middleware
-    if (error.response && error.response.data) {
-      throw {
-        ...error.response.data,
-        statusCode: error.response.status,
-      };
-    }
-
-    throw error instanceof ApiError
-      ? error
-      : new ApiError(
-          500,
-          `Failed to book an appointment: ${
-            error instanceof Error ? error.message : "Unknown error"
-          }`
-        );
+  } catch (error: unknown) {
+    handleExternalAPIError(error, "Failed to create an appointment");
   }
 };

@@ -1,11 +1,8 @@
 import { AxiosResponse } from "axios";
 import externalApi from "../utils/externalApi";
 
-import ApiError from "../utils/ApiError";
-
-import { GetProvidersInput } from "../validations/schemas/providerSchema";
-
 import { NextHealthAPIResponse, Provider } from "../types";
+import { handleExternalAPIError } from "../utils/handleExternalAPIError";
 
 export const getProviders = async (params: string) => {
   try {
@@ -15,21 +12,7 @@ export const getProviders = async (params: string) => {
     const { data: providers } = data;
 
     return providers || [];
-  } catch (error: any) {
-    // This will directly pass the original error object to your middleware
-    if (error.response && error.response.data) {
-      throw {
-        ...error.response.data,
-        statusCode: error.response.status,
-      };
-    }
-    throw error instanceof ApiError
-      ? error
-      : new ApiError(
-          500,
-          `Failed to fetch providers: ${
-            error instanceof Error ? error.message : "Unknown error"
-          }`
-        );
+  } catch (error: unknown) {
+    handleExternalAPIError(error, "Failed to fetch providers");
   }
 };
