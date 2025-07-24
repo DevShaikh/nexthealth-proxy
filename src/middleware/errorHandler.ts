@@ -21,7 +21,7 @@ const errorHandler = (
   // If the error is not an operational error, convert it to one
   if (!(error instanceof ApiError)) {
     const statusCode = error.statusCode || 500;
-    const message = error.message || "Something went wrong";
+    const message = error.error[0] || error.message || "Something went wrong";
     error = new ApiError(statusCode, message, false, error.stack);
   }
 

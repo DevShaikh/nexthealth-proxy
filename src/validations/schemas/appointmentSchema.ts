@@ -32,3 +32,23 @@ export const GetAppointmentSlotsSchema = z.object({
 export type GetAppointmentSlotsInput = z.infer<
   typeof GetAppointmentSlotsSchema
 >;
+
+export const CreateAppointmentQuerySchema = z.object({
+  subdomain: z.string().min(1, "Subdomain is required."),
+  location_id: z.string().optional(),
+});
+
+export const CreateAppointmentSchema = z.object({
+  patient_id: z.number(),
+  provider_id: z.number(),
+  operatory_id: z.number(),
+  start_time: z.string().refine((val) => !isNaN(Date.parse(val)), {
+    message: "Invalid ISO date string",
+  }),
+  appointment_type_id: z.number().optional(),
+});
+
+export type CreateAppointmentQueryInput = z.infer<
+  typeof CreateAppointmentQuerySchema
+>;
+export type CreateAppointmentInput = z.infer<typeof CreateAppointmentSchema>;

@@ -3,6 +3,8 @@ import { RequestHandler } from "express";
 import { sendSuccessResponse } from "../utils/responseHandler";
 
 import {
+  CreateAppointmentInput,
+  CreateAppointmentQueryInput,
   GetAppointmentSlotsInput,
   GetAppointmentTypesInput,
 } from "../validations/schemas/appointmentSchema";
@@ -41,6 +43,21 @@ export const getAppointmentSlots: RequestHandler = async (req, res, next) => {
       result,
       "Appointment Slots fetched successful"
     );
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const createAppointment: RequestHandler = async (req, res, next) => {
+  try {
+    const query = req.query as CreateAppointmentQueryInput;
+    const params = toQueryParams(query);
+
+    const payload = req.body as CreateAppointmentInput;
+
+    const result = await appointmentService.createAppointment(params, payload);
+
+    sendSuccessResponse(res, 200, result, "Appointment booked successful");
   } catch (err) {
     next(err);
   }

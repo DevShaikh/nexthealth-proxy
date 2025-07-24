@@ -189,3 +189,46 @@ export interface AppointmentType {
   minutes: number;
   bookable_online: boolean;
 }
+
+export interface Appointment {
+  id: number;
+  patient_id: number;
+  provider_id: number;
+  provider_name: string;
+  start_time: string;
+  confirmed: boolean;
+  patient_missed: boolean;
+  created_at: string;
+  updated_at: string;
+  note: string | null;
+  end_time: string;
+  unavailable: boolean;
+  cancelled: boolean;
+  timezone: string;
+  institution_id: number;
+  appointment_type_id: number | null;
+  checkin_at: string | null;
+  location_id: number;
+  foreign_id: string | null;
+  foreign_id_type: string | null;
+  misc: {
+    is_booked_on_nexhealth: boolean;
+    booked_by_api_user_id: number;
+  };
+  last_sync_time: string | null;
+  patient_confirmed: boolean;
+  created_by_user_id: number;
+  is_guardian: boolean;
+  patient_confirmed_at: string | null;
+  cancelled_at: string | null;
+  is_new_clients_patient: boolean | null;
+  confirmed_at: string | null;
+  sooner_if_possible: boolean;
+  operatory_id: number;
+  deleted: boolean;
+  checked_out: boolean;
+  checked_out_at: string | null;
+  referrer: string | null;
+  is_past_patient: boolean;
+  timezone_offset: string;
+}
