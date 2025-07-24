@@ -46,7 +46,7 @@ The application requires the following environment variables. Create a `.env` fi
 
 ```env
 PORT=3000
-NEXT_HEALTH_API_URL=https://api.nexthealth.com/v1
+NEXT_HEALTH_API_URL=https://nexhealth.info
 NEXT_HEALTH_API_TOKEN=your-token-here
 
 ```
