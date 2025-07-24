@@ -3,14 +3,19 @@
  * @description Global error handling middleware for Express.
  */
 
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 import env from "../config/env";
 
 import ApiError from "../utils/ApiError";
 
 // Error handling middleware
-const errorHandler = (err: unknown, req: Request, res: Response) => {
+const errorHandler = (
+  err: unknown,
+  req: Request,
+  res: Response,
+  _next: NextFunction // use underscore prefix to avoid lint error
+) => {
   let error: ApiError;
 
   // Narrow unknown error into ApiError
