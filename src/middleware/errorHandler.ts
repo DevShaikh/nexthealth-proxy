@@ -32,7 +32,6 @@ const errorHandler = (
     code: statusCode,
     message: message,
     errors: isOperational ? error.errors : undefined, // Only include errors if it's an operational error
-    ...(env.NODE_ENV === "development" && { stack: error.stack }), // Only show stack in dev
   };
 
   if (env.NODE_ENV === "development") {

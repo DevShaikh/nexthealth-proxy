@@ -13,7 +13,15 @@ export const authenticate = async () => {
     const { data: auth } = data;
 
     return auth;
-  } catch (error) {
+  } catch (error: any) {
+    // This will directly pass the original error object to your middleware
+    if (error.response && error.response.data) {
+      throw {
+        ...error.response.data,
+        statusCode: error.response.status,
+      };
+    }
+
     throw error instanceof ApiError
       ? error
       : new ApiError(

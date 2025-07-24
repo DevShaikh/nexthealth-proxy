@@ -15,7 +15,14 @@ export const getProviders = async (params: string) => {
     const { data: providers } = data;
 
     return providers || [];
-  } catch (error) {
+  } catch (error: any) {
+    // This will directly pass the original error object to your middleware
+    if (error.response && error.response.data) {
+      throw {
+        ...error.response.data,
+        statusCode: error.response.status,
+      };
+    }
     throw error instanceof ApiError
       ? error
       : new ApiError(
