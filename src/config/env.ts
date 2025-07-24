@@ -2,8 +2,8 @@ interface EnvConfig {
   NODE_ENV: string;
   PORT: number;
   LOG_LEVEL: string;
-  NEXT_HEALTH_API_URL: string;
-  NEXT_HEALTH_API_TOKEN: string;
+  NEX_HEALTH_API_URL: string;
+  NEX_HEALTH_API_TOKEN: string;
 }
 
 import dotenv from "dotenv";
@@ -13,8 +13,8 @@ dotenv.config();
 const env: EnvConfig = {
   NODE_ENV: process.env.NODE_ENV || "development",
   PORT: parseInt(process.env.PORT || "3000", 10),
-  NEXT_HEALTH_API_URL: process.env.NEXT_HEALTH_API_URL || "",
-  NEXT_HEALTH_API_TOKEN: process.env.NEXT_HEALTH_API_TOKEN || "",
+  NEX_HEALTH_API_URL: process.env.NEX_HEALTH_API_URL || "",
+  NEX_HEALTH_API_TOKEN: process.env.NEX_HEALTH_API_TOKEN || "",
 
   LOG_LEVEL: process.env.LOG_LEVEL || "info",
 };
