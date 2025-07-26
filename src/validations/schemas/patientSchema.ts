@@ -21,7 +21,7 @@ export const GetPatientsSchema = z.object({
     .regex(/^\d{4}-\d{2}-\d{2}$/)
     .optional(),
   non_patient: z.string().optional(),
-  location_strict: z.string().optional().optional(),
+  location_strict: z.string().optional(),
 });
 
 export type GetPatientsInput = z.infer<typeof GetPatientsSchema>;
