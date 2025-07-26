@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "build": "tsc && prisma generate",
+    "build": "tsc",
     "start": "node dist/server.js",
     "lint": "eslint . --ext .ts,.tsx,.js"
   },
