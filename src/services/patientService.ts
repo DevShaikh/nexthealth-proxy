@@ -13,9 +13,9 @@ export const getPatients = async (params: string) => {
     }: AxiosResponse<NextHealthAPIResponse<{ patients: Patient[] }>> =
       await externalApi.get(`/patients${params}`);
 
-    const { data: patients } = data;
+    const { data: result } = data;
 
-    return patients || [];
+    return result.patients || [];
   } catch (error: unknown) {
     handleExternalAPIError(error, "Failed to fetch patients");
   }

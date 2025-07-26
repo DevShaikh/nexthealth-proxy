@@ -39,7 +39,7 @@ export const createPatient: RequestHandler = async (req, res, next) => {
       date_of_birth: payload.patient.bio.date_of_birth,
     });
 
-    const { patients } = await patientService.getPatients(get_patients_params);
+    const patients = await patientService.getPatients(get_patients_params);
 
     if (patients.length) {
       throw new ApiError(409, "Patient already exists");
