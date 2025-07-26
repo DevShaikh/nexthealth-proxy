@@ -136,18 +136,6 @@ export interface CustomRecurrence {
 }
 
 /**
- * Interface for 'appointment_types' array items within Availabilities.
- */
-export interface AppointmentType {
-  id: number;
-  name: string;
-  parent_type: string;
-  parent_id: number;
-  minutes: number;
-  bookable_online: boolean;
-}
-
-/**
  * Interface for the 'availabilities' array items within the Provider data.
  */
 export interface ProviderAvailability {
@@ -195,6 +183,9 @@ export interface Provider {
   availabilities: ProviderAvailability[];
 }
 
+/**
+ * Interface for 'appointment_types' array items within Availabilities.
+ */
 export interface AppointmentType {
   id: number;
   name: string;
