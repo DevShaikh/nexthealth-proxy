@@ -20,7 +20,7 @@ export const getPatients: RequestHandler = async (req, res, next) => {
 
     const result = await patientService.getPatients(params);
 
-    sendSuccessResponse(res, 200, result, "Patients fetched successful");
+    sendSuccessResponse(res, 200, result, "Patients fetched successfully");
   } catch (err) {
     next(err);
   }
@@ -47,7 +47,7 @@ export const createPatient: RequestHandler = async (req, res, next) => {
 
     const result = await patientService.createPatient(params, payload);
 
-    sendSuccessResponse(res, 200, result, "Patients created successful");
+    sendSuccessResponse(res, 200, result, "Patient created successfully");
   } catch (err) {
     next(err);
   }

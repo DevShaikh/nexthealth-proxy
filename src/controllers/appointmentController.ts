@@ -23,7 +23,7 @@ export const getAppointmentTypes: RequestHandler = async (req, res, next) => {
       res,
       200,
       result,
-      "Appointment Types fetched successful"
+      "Appointment Types fetched successfully"
     );
   } catch (err) {
     next(err);
@@ -41,7 +41,7 @@ export const getAppointmentSlots: RequestHandler = async (req, res, next) => {
       res,
       200,
       result,
-      "Appointment Slots fetched successful"
+      "Appointment Slots fetched successfully"
     );
   } catch (err) {
     next(err);
@@ -57,7 +57,7 @@ export const createAppointment: RequestHandler = async (req, res, next) => {
 
     const result = await appointmentService.createAppointment(params, payload);
 
-    sendSuccessResponse(res, 200, result, "Appointment booked successful");
+    sendSuccessResponse(res, 200, result, "Appointment booked successfully");
   } catch (err) {
     next(err);
   }
