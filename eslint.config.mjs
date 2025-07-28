@@ -1,29 +1,18 @@
-// eslint.config.js
-import js from "@eslint/js";
-import tseslint from "typescript-eslint";
+// eslint.config.mjs
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
 
 export default [
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
   {
-    ignores: ["dist", "node_modules"], // replaces .eslintignore
-  },
-  {
-    files: ["**/*.ts", "**/*.tsx"],
+    files: ["**/*.ts"],
     languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: "./tsconfig.json",
-      },
+      parser: tsParser,
+    },
+    plugins: {
+      "@typescript-eslint": tseslint,
     },
     rules: {
-      // your custom rules here
-      "no-console": ["warn", { allow: ["warn", "error"] }],
-      "@typescript-eslint/explicit-function-return-type": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { argsIgnorePattern: "^_" },
-      ],
+      ...tseslint.configs.recommended.rules,
     },
   },
 ];

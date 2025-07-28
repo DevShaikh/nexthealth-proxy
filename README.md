@@ -1,10 +1,10 @@
-# NextHealth Proxy
+# NexHealth Proxy
 
-This is a lightweight backend service that acts as a proxy between your frontend and the [NextHealth](https://www.nexhealth.com/) API. It forwards authenticated requests, handles response formatting (if needed), and provides a simple abstraction layer.
+This is a lightweight backend service that acts as a proxy between your frontend and the [NexHealth](https://www.nexhealth.com/) API. It forwards authenticated requests, handles response formatting (if needed), and provides a simple abstraction layer.
 
 ## 🧩 Features
 
-- Securely proxy requests to the NextHealth API
+- Securely proxy requests to the NexHealth API
 - Handle authentication headers or tokens
 - Hide API keys/secrets from the frontend
 - Optionally cache or transform responses
@@ -21,8 +21,8 @@ This is a lightweight backend service that acts as a proxy between your frontend
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/nexthealth-proxy.git
-cd nexthealth-proxy
+git clone https://github.com/patientup/scheduler.git
+cd scheduler
 ```
 
 ## 🛠 Environment Variables
@@ -31,10 +31,10 @@ The application requires the following environment variables. Create a `.env` fi
 
 ### Required
 
-| Variable                | Description                                                        |
-| ----------------------- | ------------------------------------------------------------------ |
-| `NEXT_HEALTH_API_URL`   | The base URL of the Next Health external API.                      |
-| `NEXT_HEALTH_API_TOKEN` | Bearer token used to authenticate requests to the Next Health API. |
+| Variable               | Description                                                        |
+| ---------------------- | ------------------------------------------------------------------ |
+| `NEX_HEALTH_API_URL`   | The base URL of the Next Health external API.                      |
+| `NEX_HEALTH_API_TOKEN` | Bearer token used to authenticate requests to the Next Health API. |
 
 ### Optional
 
@@ -46,7 +46,7 @@ The application requires the following environment variables. Create a `.env` fi
 
 ```env
 PORT=3000
-NEXT_HEALTH_API_URL=https://nexhealth.info
-NEXT_HEALTH_API_TOKEN=your-token-here
+NEX_HEALTH_API_URL=https://nexhealth.info
+NEX_HEALTH_API_TOKEN=your-token-here
 
 ```

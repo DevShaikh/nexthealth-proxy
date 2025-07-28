@@ -4,15 +4,15 @@
     "module": "commonjs",
     "lib": ["es2020"],
     "outDir": "./dist",
-    "rootDir": "./src",
-    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "rootDir": "./server",
+    "typeRoots": ["./server/types", "./node_modules/@types"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "baseUrl": "src"
+    "baseUrl": "server"
   },
-  "include": ["src/**/*.ts"],
+  "include": ["server/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
